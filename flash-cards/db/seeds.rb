@@ -3,12 +3,12 @@ class DeckImporter
     new_deck = Deck.create(title: deck_name)
     csv = CSV.new(File.open(filename), :headers => true)
     csv.each do |row|
-      card_hash = {answer: nil, clue: nil}
+      card_hash = {term: nil, definition: nil}
       row.each do |field, value|
-        if field == "answer"
-          card_hash[answer: value]
+        if field == "term"
+          card_hash[term: value]
         else
-          card_hash[clue: value]
+          card_hash[definition: value]
         end
       end
       new_deck.cards << Card.create(card_hash)
