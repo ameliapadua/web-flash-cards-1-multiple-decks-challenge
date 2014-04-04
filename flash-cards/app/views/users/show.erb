@@ -1,0 +1,19 @@
+<div class="container">
+  <h1>My Stats</h1>
+  <table>
+    <% @rounds.each do |round| %>
+      <tr>
+        <th>Round</th>
+        <th>Correct</th>
+        <th>Incorrect</th>
+        <th>Percentage</th>
+      </tr>
+      <tr>
+        <td><%= round.id %></td>
+        <td><%= @correct %></td>
+        <td><%= @incorrect %></td>
+        <td><%= "#{@percentage}%" %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

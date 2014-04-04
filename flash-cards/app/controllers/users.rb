@@ -22,3 +22,26 @@ post '/create_user' do
   end
 end
 
+get '/users/:id/stats' do
+  if logged_in?
+    @rounds = @current_user.rounds
+    @guesses = []
+
+    @rounds.each do |round|
+      @guesses = round.guesses
+    end
+
+    @correct = 0
+    @incorrect = 0
+
+    @guesses.each do |guess|
+      guess.correct ? @correct += 1 : @incorrect += 1
+    end
+
+    @percentage = ((@correct * 100)/(@correct + @incorrect))
+
+    erb :'users/show'
+  else
+    redirect '/'
+  end
+end
