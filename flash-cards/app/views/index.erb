@@ -1,23 +1,24 @@
 <div class="container">
-  <h1>Welcome to Sinatra!</h1>
-  <p>Hello, world!</p>
+  <h1>Welcome to Flashcards!</h1>
+  <form action="/login" method="post">
+    <label for="email">Email: </label>
+    <input type="text" name="email">
+    <label for="password">Password: </label>
+    <input type="text" name="password"><br><br>
+    <input type="submit" value="Log In">
+  </form>
+</div>
 
-  <table>
-    <tr>
-      <th>File Description</th>
-      <th>File Location</th>
-    </tr>
-    <tr>
-      <td>This view file</td>
-      <td><code><%= __FILE__.gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-    <tr>
-      <td>The layout file</td>
-      <td><code><%= File.expand_path('../layout.erb', __FILE__).gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-    <tr>
-      <td>The current controller</td>
-      <td><code><%= File.expand_path('../../controllers/index.rb', __FILE__).gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-  </table>
+<div class="container">
+  <h3>Create a New Account:</h3>
+  <form>
+    <label for="name">Full Name:</label><br>
+    <input type="text" name="name"><br><br>
+    <label for="email">Email:</label><br>
+    <input type="text" name="email"><br><br>
+    <label for="password">Password:</label><br>
+    <input type="text" name="password"><br><br>
+    <input type="submit" value="Create Account">
+
+  </form>
 </div>
