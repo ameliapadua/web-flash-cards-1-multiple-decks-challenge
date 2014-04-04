@@ -1,3 +1,4 @@
 class Guess < ActiveRecord::Base
-  belongs_to :cards
+  belongs_to :card
+  belongs_to :round
 end
