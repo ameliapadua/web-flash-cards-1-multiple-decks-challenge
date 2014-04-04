@@ -1,0 +1,10 @@
+<div class="container">
+  <h1>Welcome to Sinatra!</h1>
+  <p>Choose a deck!</p>
+
+  <% @deck.each do |deck| %>
+  <ul>
+    <li><a href="deck/<%= deck.name %>"><%= deck.name %></a></li>
+  </ul>
+  <% end %>
+</div>

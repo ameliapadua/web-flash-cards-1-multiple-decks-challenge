@@ -1,9 +1,92 @@
+th {
+  text-align: left;
+}
 .container {
   margin: 20px auto;
   width: 600px;
   padding: 0px 20px 20px 20px;
   border: 1px dotted black;
+  box-shadow: 2px 5px #333
 }
+
+.tiny-button {
+  font-weight: 400;
+  padding: 1px 2px;
+  background-color:#fafbfb;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fafbfb), dadbfb6dbb));
+  background: -webkit-linear-gradient(top, #fafbfb, #dadbfb);
+  background: -moz-linear-gradient(top, #fafbfb, #dadbfb);
+  background: -o-linear-gradient(top, #fafbfb, #dadbfb);
+  background: linear-gradient(top, #fafbfb, #dadbfb);
+  font-size:0.7em;
+  -webkit-border-radius: 15px 0px 0px 15px;
+  -moz-border-radius: 15px 0px 0px 15px;
+  border-radius: 15px 0px 0px 15px;
+  -webkit-box-shadow: rgba(0, 0, 0, .25) 0 1px 0px;
+  -moz-box-shadow: rgba(0, 0, 0, .25) 0 1px 0px;
+  box-shadow: rgba(0, 0, 0, .25) 0 1px 0px;
+}
+
+.post-title {
+  padding: 10px 10px 10px 10px;
+  margin-bottom: 10px;
+}
+.bost-body{
+  padding: 5px 10px 5px 10px;
+  margin-bottom: 2px;
+}
+
+.navbuttons {
+  background-color: lightgray;
+  width: 50%;
+  padding: 5px;
+  clear: both;
+}
+.navbuttons li {
+  margin: 10px;
+  padding: 0px;
+  display: inline;
+  float: none;
+}
+
+.formtable {
+  background-color: lightgray;
+  width: 100%;
+  border-radius: 4px 4px 4px 4px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.large-button {
+  font-weight: 700;
+  padding: 5px 5px;
+  background-color:#fafbfb;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fafbfb), dadbfb6dbb));
+  background: -webkit-linear-gradient(top, #fafbfb, #dadbfb);
+  background: -moz-linear-gradient(top, #fafbfb, #dadbfb);
+  background: -o-linear-gradient(top, #fafbfb, #dadbfb);
+  background: linear-gradient(top, #fafbfb, #dadbfb);
+  font-size:0.7em;
+  -webkit-border-radius: 4px 4px 4px 4px;
+  -moz-border-radius: 4px 4px 4px 4px;
+  border-radius: 4px 4px 4px 4px;
+  -webkit-box-shadow: rgba(0, 0, 0, .25) 0 1px 0px;
+  -moz-box-shadow: rgba(0, 0, 0, .25) 0 1px 0px;
+  box-shadow: rgba(0, 0, 0, .25) 0 1px 0px;
+}
+
+
 th {
   text-align: left;
+}
+
+h1 {
+  text-align: center;
+  border-bottom: solid;
+  padding-bottom: 5px;
+}
+
+h3 {
+  border-bottom: solid;
+  padding-bottom: 5px;
 }
