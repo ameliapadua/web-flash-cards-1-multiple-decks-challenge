@@ -1,9 +1,14 @@
 <div class="container">
-  <h1>My Stats</h1>
+  <h1>My Profile</h1>
+  <%= @current_user.name%><br>
+  <%= @current_user.email%>
+
+  <h2>My Stats</h2>
   <% if any_rounds? %>
     <table>
       <% @round_stats.each do |round, value| %>
         <tr>
+          <th>Deck</th>
           <th>Round</th>
           <th>Correct</th>
           <th>Incorrect</th>
@@ -11,6 +16,7 @@
           <th>Percentage</th>
         </tr>
         <tr>
+          <td><%= value[:deck] %></td>
           <td><%= round %></td>
           <td><%= value[:correct] %></td>
           <td><%= value[:incorrect] %></td>

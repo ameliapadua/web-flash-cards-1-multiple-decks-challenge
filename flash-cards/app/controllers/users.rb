@@ -27,7 +27,7 @@ get '/users/:id/stats' do
     @rounds = @current_user.rounds
     @round_stats = {}
 
-    @rounds.each do |round|
+    @rounds.reverse_each do |round|
       @round_stats[round.id] = {}
       correct = 0
       incorrect = 0
@@ -36,6 +36,7 @@ get '/users/:id/stats' do
         guess.correct ? correct += 1 : incorrect += 1
       end
 
+      @round_stats[round.id][:deck] = Deck.find(round.deck_id).name
       @round_stats[round.id][:correct] = correct
       @round_stats[round.id][:incorrect] = incorrect
       @round_stats[round.id][:total] = correct + incorrect
