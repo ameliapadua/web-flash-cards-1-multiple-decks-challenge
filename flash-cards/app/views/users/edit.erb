@@ -1,0 +1,16 @@
+<div class="container">
+  <h2>Edit Info</h2>
+  <form action="/users/<%= @current_user.id %>" method="post">
+    <label for="user[name]">Edit Name:</label>
+    <input type="text" name="user[name]" value="<%= @current_user.name %>" />
+    <br><br>
+    <label for="user[email]">Edit Email:</label>
+    <input type="text" name="user[email]" value="<%= @current_user.email %>" />
+    <br><br>
+    <label for="user[password]">Edit Password:</label>
+    <input type="text" name="user[password]" value="<%= @current_user.password %>" />
+    <br><br>
+
+    <input type="submit" />
+  </form>
+</div>
