@@ -1,19 +1,33 @@
 <div class="container">
-  <h1>My Stats</h1>
-  <table>
-    <% @rounds.each do |round| %>
-      <tr>
-        <th>Round</th>
-        <th>Correct</th>
-        <th>Incorrect</th>
-        <th>Percentage</th>
-      </tr>
-      <tr>
-        <td><%= round.id %></td>
-        <td><%= @correct %></td>
-        <td><%= @incorrect %></td>
-        <td><%= "#{@percentage}%" %></td>
-      </tr>
-    <% end %>
-  </table>
+  <h1>My Profile</h1>
+  <%= @current_user.name%><br>
+  <%= @current_user.email%><br>
+  <a href="/users/<%= @current_user.id %>/edit">Edit Info</a>
+  <h2>My Stats</h2>
+  <% if any_rounds? %>
+    <table>
+      <% @round_stats.each do |round, value| %>
+        <tr>
+          <th>Deck</th>
+          <th>Round</th>
+          <th>Correct</th>
+          <th>Incorrect</th>
+          <th>Total</th>
+          <th>Percentage</th>
+        </tr>
+        <tr>
+          <td><%= value[:deck] %></td>
+          <td><%= round %></td>
+          <td><%= value[:correct] %></td>
+          <td><%= value[:incorrect] %></td>
+          <td><%= value[:total] %></td>
+          <td><%= "#{value[:percentage]}%" %></td>
+        </tr>
+      <% end %>
+    </table>
+
+  <% else %>
+    <p>You haven't played any rounds yet!</p>
+    <a href="/">Go Play!</a>
+  <% end %>
 </div>

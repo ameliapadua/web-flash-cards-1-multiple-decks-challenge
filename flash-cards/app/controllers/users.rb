@@ -23,25 +23,30 @@ post '/create_user' do
 end
 
 get '/users/:id/stats' do
-  if logged_in?
-    @rounds = @current_user.rounds
-    @guesses = []
-
-    @rounds.each do |round|
-      @guesses = round.guesses
-    end
-
-    @correct = 0
-    @incorrect = 0
-
-    @guesses.each do |guess|
-      guess.correct ? @correct += 1 : @incorrect += 1
-    end
-
-    @percentage = ((@correct * 100)/(@correct + @incorrect))
-
+  if logged_in? && any_rounds?
+    @round_stats = create_rounds_hash
+    erb :'users/show'
+  elsif logged_in? && !any_rounds?
     erb :'users/show'
   else
     redirect '/'
+  end
+end
+
+get '/users/:id/edit' do
+  if logged_in?
+    @current_user
+    erb :"users/edit"
+  else
+    redirect '/'
+  end
+end
+
+post '/users/:id' do
+  @user = User.find(params[:id])
+  if @user.update(params[:user])
+    redirect "/users/#{@user.id}/stats"
+  else
+    erb :"users/edit"
   end
 end
