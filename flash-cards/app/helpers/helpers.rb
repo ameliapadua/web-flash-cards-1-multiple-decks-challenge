@@ -11,4 +11,8 @@ helpers do
   def logged_in?
     !current_user.nil?
   end
+
+  def any_rounds?
+    @current_user.rounds.first != nil
+  end
 end

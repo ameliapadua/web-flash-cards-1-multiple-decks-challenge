@@ -23,7 +23,7 @@ post '/create_user' do
 end
 
 get '/users/:id/stats' do
-  if logged_in?
+  if logged_in? && any_rounds?
     @rounds = @current_user.rounds
     @guesses = []
 
@@ -40,6 +40,8 @@ get '/users/:id/stats' do
 
     @percentage = ((@correct * 100)/(@correct + @incorrect))
 
+    erb :'users/show'
+  elsif logged_in? && !any_rounds?
     erb :'users/show'
   else
     redirect '/'
