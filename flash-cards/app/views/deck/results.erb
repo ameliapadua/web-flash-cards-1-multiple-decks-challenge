@@ -1,0 +1,12 @@
+<div class="container">
+  <h1>Welcome to Guessers</h1>
+  <p>Your results</p>
+  <p><%= @result %></p>
+
+  <form action="/deck/<%= @deck_name %>" method="post">
+
+    <input class='large-button'type='submit' value='Next'/>
+
+  </form>
+
+</div>
