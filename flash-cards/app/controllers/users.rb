@@ -25,20 +25,22 @@ end
 get '/users/:id/stats' do
   if logged_in? && any_rounds?
     @rounds = @current_user.rounds
-    @guesses = []
+    @round_stats = {}
 
     @rounds.each do |round|
-      @guesses = round.guesses
+      @round_stats[round.id] = {}
+      correct = 0
+      incorrect = 0
+
+      round.guesses.each do |guess|
+        guess.correct ? correct += 1 : incorrect += 1
+      end
+
+      @round_stats[round.id][:correct] = correct
+      @round_stats[round.id][:incorrect] = incorrect
+      @round_stats[round.id][:total] = correct + incorrect
+      @round_stats[round.id][:percentage] = (correct * 100)/@round_stats[round.id][:total]
     end
-
-    @correct = 0
-    @incorrect = 0
-
-    @guesses.each do |guess|
-      guess.correct ? @correct += 1 : @incorrect += 1
-    end
-
-    @percentage = ((@correct * 100)/(@correct + @incorrect))
 
     erb :'users/show'
   elsif logged_in? && !any_rounds?

@@ -2,18 +2,20 @@
   <h1>My Stats</h1>
   <% if any_rounds? %>
     <table>
-      <% @rounds.each do |round| %>
+      <% @round_stats.each do |round, value| %>
         <tr>
           <th>Round</th>
           <th>Correct</th>
           <th>Incorrect</th>
+          <th>Total</th>
           <th>Percentage</th>
         </tr>
         <tr>
-          <td><%= round.id %></td>
-          <td><%= @correct %></td>
-          <td><%= @incorrect %></td>
-          <td><%= "#{@percentage}%" %></td>
+          <td><%= round %></td>
+          <td><%= value[:correct] %></td>
+          <td><%= value[:incorrect] %></td>
+          <td><%= value[:total] %></td>
+          <td><%= "#{value[:percentage]}%" %></td>
         </tr>
       <% end %>
     </table>
