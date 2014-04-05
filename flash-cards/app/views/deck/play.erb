@@ -1,0 +1,17 @@
+<div class="container">
+  <h1>Welcome to Guessers</h1>
+  <p>Guess an answer</p>
+  <table class="formtable">
+    <form action="/deck/result" method="post">
+      <%= @cards.first.definition %><br>
+      <input type='radio' name='option' value=<% %> ><br/>
+      <input type='radio' name='option' value=<% %> ><br/>
+      <input type='radio' name='option' value=<% %> ><br/>
+      <input type='radio' name='option' value=<% %> ><br/>
+
+    <tr>
+      <td><input class='large-button'type='submit' value='Submit Guess'/></td>
+    </tr>
+    </form>
+  </table>
+</div>
