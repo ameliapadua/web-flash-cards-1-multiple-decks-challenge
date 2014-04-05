@@ -3,11 +3,12 @@ class Round < ActiveRecord::Base
   belongs_to :deck
   has_many :guesses
 
-  def self.round_setup(deck_name)
+  def self.round_setup(user_id, deck_name)
     deck = Deck.where(name: deck_name).first
     deck_cards = deck.cards
 
     if PlayingCard.all.count == 0
+      @round = Round.create(user_id: user_id, deck_id: deck.id)
       deck_cards.each do |card|
         PlayingCard.create(card_id: card.id)
       end
@@ -37,7 +38,16 @@ class Round < ActiveRecord::Base
   end
 
   def self.check_guess(guess, answer)
-    guess == answer ? true : false
+    current_card_id = Card.where(term: answer).first.id
+    current_round = Round.last.id
+
+    if guess == answer
+      Guess.create(correct: true, selected_term: guess, card_id: current_card_id, round_id: current_round)
+      true
+    else
+      Guess.create(correct: false, selected_term: guess, card_id: current_card_id, round_id: current_round)
+      false
+    end
   end
 
   def self.card_in_play

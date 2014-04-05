@@ -1,7 +1,7 @@
 <div class="container">
   <h1>Welcome to Guessers</h1>
   <p>Your results</p>
-  <p><%= @result %></p>
+  <p><%= @result %>: <%= @real_answer %></p>
 
   <form action="/deck/<%= @deck_name %>" method="post">
 

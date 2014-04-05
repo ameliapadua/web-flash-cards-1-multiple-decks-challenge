@@ -1,6 +1,7 @@
 get '/deck' do
   if logged_in?
     @deck = Deck.all
+    PlayingCard.destroy_all
     erb :'deck/index'
   else
     redirect '/'
@@ -11,8 +12,8 @@ end
 get '/deck/:deck_name' do
   if logged_in?
     @deck_name = params[:deck_name]
-
-    Round.round_setup(@deck_name)
+    user_id = session[:user_id]
+    Round.round_setup(user_id, @deck_name)
 
     @possible_answers = [Round.card_in_play.term]
 
@@ -24,6 +25,7 @@ get '/deck/:deck_name' do
     if Round.cards_left_to_play.count > 0
       erb :'deck/play'
     else
+      PlayingCard.destroy_all
       erb :'deck/round_stats'
     end
   else
@@ -34,8 +36,8 @@ end
 post '/deck/result' do
   if logged_in?
     user_guess = params[:option]
-    real_answer = params[:real_answer]
-    @result = Round.check_guess(user_guess, real_answer)
+    @real_answer = params[:real_answer]
+    @result = Round.check_guess(user_guess, @real_answer)
     deck_id = Round.last.deck_id
     @deck_name = Deck.find(deck_id).name
 
