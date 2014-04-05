@@ -7,45 +7,54 @@ get '/deck' do
   end
 end
 
+
 get '/deck/:deck_name' do
   if logged_in?
-    @cards = Deck.where(name: params[:deck_name]).first.cards
+    @deck_name = params[:deck_name]
 
-    @cards_left_to_play = @cards.to_a
-    @card_in_play = @cards.sample
+    Round.round_setup(@deck_name)
 
-    @cards_left_to_play - [@card_in_play] #figure out
-
-    @possible_answers = [@card_in_play.term]
+    @possible_answers = [Round.card_in_play.term]
 
     until @possible_answers.count == 4
-      @possible_answers << @cards.sample.term
+      @possible_answers << Deck.where(name: @deck_name).first.cards.sample.term
       @possible_answers.uniq!
     end
 
-    if @cards_left_to_play.length > 0
+    if Round.cards_left_to_play.count > 0
       erb :'deck/play'
     else
       erb :'deck/round_stats'
     end
   else
-    redirect '/'
-  end
-end
-
-post '/deck/play' do
-  if logged_in?
-    redirect '/'
-  else
-    redirect '/'
+    redirect '/deck'
   end
 end
 
 post '/deck/result' do
   if logged_in?
-    redirect '/'
+    user_guess = params[:option]
+    real_answer = params[:real_answer]
+    @result = Round.check_guess(user_guess, real_answer)
+    deck_id = Round.last.deck_id
+    @deck_name = Deck.find(deck_id).name
+
+    erb :'deck/results'
   else
     redirect '/'
   end
 end
 
+get '/deck/card/play' do
+  if logged_in?
+    erb :'deck/play'
+  else
+    redirect '/'
+  end
+end
+
+post '/deck/:deck_name' do
+  @deck_name = params[:deck_name]
+
+  redirect "/deck/#{@deck_name}"
+end
