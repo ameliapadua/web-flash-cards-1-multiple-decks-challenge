@@ -1,6 +1,6 @@
 post '/login' do
   if User.authenticate(params[:email], params[:password])
-    session[:user_id] = User.where(password: params[:password]).first.id
+    session[:user_id] = User.where(email: params[:email]).first.id
     redirect '/deck'
   else
     erb :index
