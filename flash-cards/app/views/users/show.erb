@@ -1,8 +1,8 @@
 <div class="container">
   <h1>My Profile</h1>
   <%= @current_user.name%><br>
-  <%= @current_user.email%>
-
+  <%= @current_user.email%><br>
+  <a href="/users/<%= @current_user.id %>/edit">Edit Info</a>
   <h2>My Stats</h2>
   <% if any_rounds? %>
     <table>

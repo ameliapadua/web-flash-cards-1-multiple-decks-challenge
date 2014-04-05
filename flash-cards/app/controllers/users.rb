@@ -50,3 +50,21 @@ get '/users/:id/stats' do
     redirect '/'
   end
 end
+
+get '/users/:id/edit' do
+  if logged_in?
+    @current_user
+    erb :"users/edit"
+  else
+    redirect '/'
+  end
+end
+
+post '/users/:id' do
+  @user = User.find(params[:id])
+  if @user.update(params[:user])
+    redirect "/users/#{@user.id}/stats"
+  else
+    erb :"users/edit"
+  end
+end
