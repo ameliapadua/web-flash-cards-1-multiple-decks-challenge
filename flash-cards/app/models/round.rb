@@ -66,10 +66,10 @@ class Round < ActiveRecord::Base
 
     if guess == answer
       Guess.create(correct: true, selected_term: guess, card_id: current_card_id, round_id: current_round)
-      true
+      'correct'
     else
       Guess.create(correct: false, selected_term: guess, card_id: current_card_id, round_id: current_round)
-      false
+      'incorrect'
     end
   end
 
