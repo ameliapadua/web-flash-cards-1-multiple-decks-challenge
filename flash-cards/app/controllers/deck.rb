@@ -1,7 +1,7 @@
 get '/deck' do
   if logged_in?
     @deck = Deck.all
-
+    Round.round_verify
     PlayingCard.destroy_all
     erb :'deck/index'
   else
@@ -16,13 +16,13 @@ get '/deck/:deck_name' do
 
     round = Round.round_setup(user_id, @deck_name)
     session[:round_id] = round.id
-    redirect "/deck/round/#{round.id}/deck/#{@deck_name}"
+    redirect "/round/#{round.id}/deck/#{@deck_name}"
   else
     redirect '/deck'
   end
 end
 
-get '/deck/round/:id/deck/:deck_name' do
+get '/round/:id/deck/:deck_name' do
   if logged_in?
     @deck_name = params[:deck_name]
     user_id = session[:user_id]
@@ -78,5 +78,5 @@ post '/deck/:deck_name' do
   @deck_name = params[:deck_name]
   round_id = session[:round_id]
 
-  redirect "/deck/round/#{round_id}/deck/#{@deck_name}"
+  redirect "/round/#{round_id}/deck/#{@deck_name}"
 end

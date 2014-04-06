@@ -34,6 +34,16 @@ class Round < ActiveRecord::Base
     end
   end
 
+  def self.round_verify
+    current_round = Round.last
+    puts "=================================="
+    puts "Current round is: #{current_round.guesses.count}"
+    puts "=================================="
+    if (current_round != nil) && (current_round.guesses.count == 0)
+      current_round.destroy
+    end
+  end
+
   def self.generate_card_in_play(deck)
     deck.sample
   end
