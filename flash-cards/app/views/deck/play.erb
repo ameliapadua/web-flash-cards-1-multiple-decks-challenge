@@ -12,20 +12,24 @@
       <br/><br/>
       <% end %>
 
-    <tr>
-      <td><input class='large-button'type='submit' value='Submit Guess'/>
-      </td>
-        <td><a class="large-button" href="/deck">Deck List</a></td>
-    </tr>
+      <tr id="submit-deck-button">
+        <td>
+          <input class='large-button'type='submit' value='Submit Guess'/>
+        </td>
+        <td>
+          <a class="large-button" href="/deck">Deck List</a>
+        </td>
+      </tr>
     </form>
 
     <div id='result-table'>
-      <h1>Welcome to Guessers</h1>
-      <p>Your results</p>
-      <span id='real_answer'></span>
-      <p>Your Selection</p>
-      <span id='user_guess'></span>
-      <p id='result'></p>
+      <div>
+        <p id='result'></p>
+        <p>You Guessed:</p>
+        <p class='tabbed'><span id='user_guess'></span></p>
+        <p>Correct Answer:</p>
+        <p class='tabbed'><span id='real_answer'></span></p>
+      </div>
 
       <form id= "guess-result" action="/deck/<%= @deck_name %>" method="post">
         <input class='large-button'type='submit' value='Next'/>
