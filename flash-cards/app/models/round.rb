@@ -8,16 +8,24 @@ class Round < ActiveRecord::Base
     deck_cards = deck.cards
 
     if PlayingCard.all.count == 0
-      @round = Round.create(user_id: user_id, deck_id: deck.id)
+      current_round = Round.last
+      current_round.update(deck_id: deck.id)
       deck_cards.each do |card|
         PlayingCard.create(card_id: card.id)
       end
-
       @card_in_play = generate_card_in_play(deck_cards)
-      # remove_card_in_play_from_card_queue
+      remove_card_in_play_from_card_queue
+      puts "=================================="
+      puts "Current card: #{@card_in_play.id}"
+      cards_left_to_play.each {|e| puts e.id}
+      puts "=================================="
     else
       @card_in_play = generate_card_in_play(cards_left_to_play)
-      # remove_card_in_play_from_card_queue
+      remove_card_in_play_from_card_queue
+      puts "=================================="
+      puts "Current card: #{@card_in_play.id}"
+      cards_left_to_play.each {|e| puts e.id}
+      puts "=================================="
     end
   end
 
