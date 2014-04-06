@@ -1,8 +1,7 @@
 get '/deck' do
   if logged_in?
     @deck = Deck.all
-    user_id = session[:user_id]
-    Round.create(user_id: user_id)
+
     PlayingCard.destroy_all
     erb :'deck/index'
   else
@@ -15,10 +14,24 @@ get '/deck/:deck_name' do
     @deck_name = params[:deck_name]
     user_id = session[:user_id]
 
-    Round.round_setup(user_id, @deck_name)
+    round = Round.round_setup(user_id, @deck_name)
+    session[:round_id] = round.id
+    redirect "/deck/round/#{round.id}/deck/#{@deck_name}"
+  else
+    redirect '/deck'
+  end
+end
+
+get '/deck/round/:id/deck/:deck_name' do
+  if logged_in?
+    @deck_name = params[:deck_name]
+    user_id = session[:user_id]
+    round_id = session[:round_id]
+
+    Round.game_setup(user_id, @deck_name)
 
     current_deck = Deck.where(name: @deck_name).first
-    current_round = Round.last
+    current_round = Round.find(round_id)
     @possible_answers = [Round.card_in_play.term]
 
     until @possible_answers.count == 4
@@ -63,6 +76,7 @@ end
 
 post '/deck/:deck_name' do
   @deck_name = params[:deck_name]
+  round_id = session[:round_id]
 
-  redirect "/deck/#{@deck_name}"
+  redirect "/deck/round/#{round_id}/deck/#{@deck_name}"
 end

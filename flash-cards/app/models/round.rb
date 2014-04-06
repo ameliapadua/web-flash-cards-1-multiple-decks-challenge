@@ -5,17 +5,21 @@ class Round < ActiveRecord::Base
 
   def self.round_setup(user_id, deck_name)
     deck = Deck.where(name: deck_name).first
+    Round.create(user_id: user_id, deck_id: deck.id)
+  end
+
+  def self.game_setup(user_id, deck_name)
+    deck = Deck.where(name: deck_name).first
     deck_cards = deck.cards
 
     if PlayingCard.all.count == 0
-      current_round = Round.last
-      current_round.update(deck_id: deck.id)
       deck_cards.each do |card|
         PlayingCard.create(card_id: card.id)
       end
       @card_in_play = generate_card_in_play(deck_cards)
       remove_card_in_play_from_card_queue
       puts "=================================="
+      puts "Round id: #{Round.last.id}"
       puts "Current card: #{@card_in_play.id}"
       cards_left_to_play.each {|e| puts e.id}
       puts "=================================="
@@ -23,6 +27,7 @@ class Round < ActiveRecord::Base
       @card_in_play = generate_card_in_play(cards_left_to_play)
       remove_card_in_play_from_card_queue
       puts "=================================="
+      puts "Round id: #{Round.last.id}"
       puts "Current card: #{@card_in_play.id}"
       cards_left_to_play.each {|e| puts e.id}
       puts "=================================="
