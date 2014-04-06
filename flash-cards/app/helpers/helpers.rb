@@ -26,12 +26,18 @@ helpers do
       round.guesses.each do |guess|
         guess.correct ? correct += 1 : incorrect += 1
       end
-
+      deck = Deck.find(round.deck_id)
+      puts "------------------------------------"
+      puts "Guesses: #{round.guesses.count}"
+      puts "Deck: #{deck.cards.count}"
+      puts "------------------------------------"
+      round.guesses.count < deck.cards.count ? completeness = "Incomplete" : completeness = "Complete"
       stats_hash[round.id] = {
-        deck: Deck.find(round.deck_id).name,
+        deck: deck.name,
         correct: correct,
         incorrect: incorrect,
-        total: correct + incorrect,
+        total: round.guesses.count,
+        completeness: completeness,
         percentage: (correct * 100)/(correct + incorrect)
       }
     end

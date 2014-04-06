@@ -22,7 +22,8 @@ get '/deck/:deck_name' do
       @possible_answers.uniq!
     end
 
-    if Round.cards_left_to_play.count > 0
+    if PlayingCard.count > 0
+      Round.remove_card_in_play_from_card_queue
       erb :'deck/play'
     else
       PlayingCard.destroy_all

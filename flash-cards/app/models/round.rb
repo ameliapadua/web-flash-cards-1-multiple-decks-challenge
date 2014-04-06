@@ -14,10 +14,10 @@ class Round < ActiveRecord::Base
       end
 
       @card_in_play = generate_card_in_play(deck_cards)
-      remove_card_in_play_from_card_queue
+      # remove_card_in_play_from_card_queue
     else
       @card_in_play = generate_card_in_play(cards_left_to_play)
-      remove_card_in_play_from_card_queue
+      # remove_card_in_play_from_card_queue
     end
   end
 
