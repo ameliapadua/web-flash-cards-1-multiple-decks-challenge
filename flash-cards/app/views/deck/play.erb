@@ -1,12 +1,12 @@
 <div class="container">
-  <h1>Welcome to Guessers</h1>
-  <p>Guess an answer</p>
+  <h1>Guessers Galore!</h1>
+  <p>Make a Guess</p>
 
   <table class="formtable">
-    <form action="/deck/result" method="post">
+    <form id="target" action="/deck/result" method="post">
       <%= Round.card_in_play.definition %><br>
       <p>This is the answer <%= Round.card_in_play.term %></p><br>
-      <input type="hidden" name="real_answer" value="<%= Round.card_in_play.term %>" />
+      <input id='real-answer'type="hidden" name="real_answer" value="<%= Round.card_in_play.term %>" />
       <% @possible_answers.shuffle.each do |possible_answer| %>
       <input type="radio" name="option" value="<%= possible_answer %>" > <%= possible_answer %>
       <br/><br/>
@@ -18,5 +18,19 @@
         <td><a class="large-button" href="/deck">Deck List</a></td>
     </tr>
     </form>
+
+    <div id='result-table'>
+      <h1>Welcome to Guessers</h1>
+      <p>Your results</p>
+      <span id='real_answer'></span>
+      <p>Your Selection</p>
+      <span id='user_guess'></span>
+      <p id='result'></p>
+
+      <form id= "guess-result" action="/deck/<%= @deck_name %>" method="post">
+        <input class='large-button'type='submit' value='Next'/>
+      </form>
+    </div>
+
   </table>
 </div>
