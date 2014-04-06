@@ -10,6 +10,20 @@ get '/deck' do
   end
 end
 
+get '/decks/new' do
+  erb :"/deck/new"
+end
+
+post '/decks/new/new_deck' do
+  @deck = Deck.new(name: params[:deck_name], user_id: session[:user_id])
+  if @deck.save
+    session[:new_deck_id] = @deck.id
+    redirect "/cards/new"
+  else
+    redirect '/decks/new'
+  end
+end
+
 get '/deck/:deck_name' do
   if logged_in?
     @deck_name = params[:deck_name]
@@ -20,6 +34,7 @@ get '/deck/:deck_name' do
     current_deck = Deck.where(name: @deck_name).first
     current_round = Round.last
     @possible_answers = [Round.card_in_play.term]
+
 
     until @possible_answers.count == 4
       @possible_answers << current_deck.cards.sample.term

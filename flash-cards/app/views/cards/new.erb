@@ -1,0 +1,17 @@
+<div class="container">
+  <h2>Create a New Card</h2>
+<!--   <% if session[:message] %>
+    <p><%= session[:message] %></p>
+    <%= session[:message] = nil %>
+  <% end %> -->
+  <form id="new_card" action="/cards/new" method="post">
+    <label for="term">Term:</label>
+    <input id="term" type="text" name="term" />
+    <br><br>
+    <label for="definition">Definition:</label>
+    <input id="definition" type="text" name="definition" />
+    <br><br>
+    <input type="submit" value="Add this card" />
+  </form>
+  <a href="/">Done adding cards</a>
+</div>
