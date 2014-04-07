@@ -17,7 +17,6 @@
   <h3>My Stats</h3>
   <% if any_rounds? %>
     <table>
-      <% @round_stats.each do |round, value| %>
         <tr>
           <th>Deck</th>
           <th>Round</th>
@@ -25,7 +24,9 @@
           <th>Incorrect</th>
           <th>Total</th>
           <th>Percentage</th>
+          <th>Completion</th>
         </tr>
+      <% @round_stats.each do |round, value| %>
         <tr>
           <td><%= value[:deck] %></td>
           <td><%= round %></td>

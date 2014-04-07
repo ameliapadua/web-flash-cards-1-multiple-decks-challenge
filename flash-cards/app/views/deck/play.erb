@@ -1,5 +1,7 @@
+<div class="header">
+  <h2>Guessers Galore!</h2>
+</div>
 <div class="container">
-  <h1>Guessers Galore!</h1>
   <p>Make a Guess</p>
 
   <table class="formtable">
@@ -7,17 +9,19 @@
       <%= Round.card_in_play.definition %><br>
       <p>This is the answer <%= Round.card_in_play.term %></p><br>
       <input id='real-answer'type="hidden" name="real_answer" value="<%= Round.card_in_play.term %>" />
+      <div class="radioleft">
       <% @possible_answers.shuffle.each do |possible_answer| %>
       <input type="radio" name="option" value="<%= possible_answer %>" > <%= possible_answer %>
       <br/><br/>
       <% end %>
+      </div>
 
       <tr id="submit-deck-button">
         <td>
           <input class='large-button'type='submit' value='Submit Guess'/>
         </td>
         <td>
-          <a class="large-button" href="/deck">Deck List</a>
+          <a href="/deck">Deck List</a>
         </td>
       </tr>
     </form>
