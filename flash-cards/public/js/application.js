@@ -5,13 +5,14 @@ $(document).ready(function() {
 
   // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
   $('#new_card').submit(function(event){
-    event.preventDefault;
+    event.preventDefault();
     var term = $('#term').val();
     var definition = $('#definition').val();
     var data = {term: term, definition: definition}
 
     $.post("/cards/new", data, function(response){
-      $('@term').html(response)
+      $('#term').val('').focus();
+      $('#definition').val('');
     });
   });
 });
