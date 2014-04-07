@@ -34,8 +34,6 @@ get '/round/:id/deck/:deck_name' do
     @current_round = Round.find(round_id)
     @possible_answers = [Round.card_in_play.term]
 
-
-
     until @possible_answers.count == 4
       @possible_answers << current_deck.cards.sample.term
       @possible_answers.uniq!
@@ -45,7 +43,7 @@ get '/round/:id/deck/:deck_name' do
     puts "Guess count: #{@current_round.guesses.count}"
     puts "=================================="
     if current_deck.cards.count == @current_round.guesses.count
-      @round_stats = create_current_rounds_hash
+      @round_stats = create_current_round_hash
       erb :'deck/round_stats'
     else
       erb :'deck/play'
