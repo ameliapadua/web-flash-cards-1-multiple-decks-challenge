@@ -1,10 +1,20 @@
+<div class="header">
+  <h2>My Profile</h2>
+</div>
+
 <div class="container">
-  <h1>My Profile</h1>
+  <br>
+
   <a href="/">Back to Play</a><br><br>
-  <%= @current_user.name%><br>
-  <%= @current_user.email%><br>
-  <a href="/users/<%= @current_user.id %>/edit">Edit Info</a>
-  <h2>My Stats</h2>
+  <p>Name: <%= @current_user.name%><br>
+  Email: <%= @current_user.email%><br>
+  <a href="/users/<%= @current_user.id %>/edit">Edit Info</a></p>
+</div>
+
+<div class="border margin-top"></div>
+
+<div class="container">
+  <h3>My Stats</h3>
   <% if any_rounds? %>
     <table>
       <% @round_stats.each do |round, value| %>
@@ -30,6 +40,5 @@
 
   <% else %>
     <p>You haven't played any rounds yet!</p>
-    <a href="/">Go Play!</a>
   <% end %>
 </div>

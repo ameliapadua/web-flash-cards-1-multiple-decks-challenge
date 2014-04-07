@@ -1,13 +1,17 @@
-<div class="container">
-  <h1>Welcome to Sinatra!</h1>
-  <p>Choose a deck!</p>
+<div class="header">
+  <h2>Let's Play Flashcards!</h2>
+</div>  
 
+<div class="container">
+  <ul id="links">
+	  <li><a href="/users/<%= @current_user.id%>/stats">My Stats</a></li>
+	  <li><a href="/log_out">Log Out</a></li>
+  </ul>
+  <h3 class="border">Choose a deck!</h3>
   <% @deck.each do |deck| %>
   <ul>
     <li><a href="deck/<%= deck.name %>"><%= deck.name %></a></li>
   </ul>
   <% end %>
-  <a href="/log_out">Log Out</a>
-  <a href="/users/<%= @current_user.id%>/stats">My Stats</a>
 
 </div>

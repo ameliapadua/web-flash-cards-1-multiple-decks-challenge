@@ -1,12 +1,97 @@
-th {
-  text-align: left;
+body {
+  color: #1C1E26;
+  font-family: 'Muli', sans-serif;
 }
-.container {
-  margin: 20px auto;
+
+.border {
+  border-bottom: 1px solid;
+}
+
+.margin-top {
+  margin-top: 40px;
+}
+
+.header {
+  margin: 0;
+  padding: 25px 0;
+  background: #1C1E26;
+  color: white;
+  border-bottom: 5px solid #2ABAAD;
+}
+
+.deck {
+  margin: auto;
   width: 600px;
-  padding: 0px 20px 20px 20px;
-  border: 1px dotted black;
-  box-shadow: 2px 5px #333
+  text-align: center;
+}
+
+.container {
+  margin: auto;
+  width: 600px;
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+#links li:first-child {
+  float: left;
+  padding-right: 460px;
+}
+
+a {
+  text-decoration: none;
+  color: #2ABAAD;
+}
+
+a:hover {
+  color: #1C1E26;
+}
+
+form {
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+  border-bottom: 1px solid;
+  padding-bottom: 20px;
+  margin-bottom: 50px;
+}
+
+h2 {
+  text-align: center;
+  /*padding-bottom: 20px;*/
+}
+
+h3 {
+  /*border-bottom: 1px solid ;*/
+  padding: 20px;
+  text-align: center;
+}
+
+#login input {
+  background: #1C1E26;
+  border: 0;
+  border-bottom: 1px solid white;
+  color: white;
+}
+
+#login input[type=submit] {
+  background: white;
+  border: 0;
+  color: black;
+  padding: 10px 20px;
+}
+
+input[type=submit] {
+  background: #1C1E26;
+  color: white;
+  padding: 10px 30px;
+  border: 0;
 }
 
 .tiny-button {
@@ -57,6 +142,7 @@ th {
   margin-bottom: 10px;
 }
 
+
 .large-button {
   font-weight: 700;
   padding: 5px 5px;
@@ -75,30 +161,9 @@ th {
   box-shadow: rgba(0, 0, 0, .25) 0 1px 0px;
 }
 
-.correct {
-  color: green;
-}
-
-.incorrect {
-  color: red;
-}
-
-.tabbed {
-  margin-left: 65px;
-  width: 50%;
-}
-
 table, td {
   border: 1px solid black;
 }
 
-h1 {
-  text-align: center;
-  border-bottom: solid;
-  padding-bottom: 5px;
-}
 
-h3 {
-  border-bottom: solid;
-  padding-bottom: 5px;
-}
+
