@@ -26,4 +26,16 @@ $(document).ready(function () {
       $('#result-table').show();
     });
   });
+
+  $('#new_card').submit(function(event){
+    event.preventDefault();
+    var term = $('#term').val();
+    var definition = $('#definition').val();
+    var data = {term: term, definition: definition}
+
+    $.post("/cards/new", data, function(response){
+      $('#term').val('').focus();
+      $('#definition').val('');
+    });
+  });
 });
