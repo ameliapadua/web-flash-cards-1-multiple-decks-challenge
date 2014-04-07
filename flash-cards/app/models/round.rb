@@ -36,9 +36,9 @@ class Round < ActiveRecord::Base
 
   def self.round_verify
     current_round = Round.last
-    puts "=================================="
-    puts "Current round is: #{current_round.guesses.count}"
-    puts "=================================="
+    # puts "=================================="
+    # puts "Current round is: #{current_round.guesses.count}"
+    # puts "=================================="
     if (current_round != nil) && (current_round.guesses.count == 0)
       current_round.destroy
     end
@@ -66,10 +66,10 @@ class Round < ActiveRecord::Base
 
     if guess == answer
       Guess.create(correct: true, selected_term: guess, card_id: current_card_id, round_id: current_round)
-      true
+      'CORRECT'
     else
       Guess.create(correct: false, selected_term: guess, card_id: current_card_id, round_id: current_round)
-      false
+      'Incorrect'
     end
   end
 

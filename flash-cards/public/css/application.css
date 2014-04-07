@@ -75,6 +75,19 @@ th {
   box-shadow: rgba(0, 0, 0, .25) 0 1px 0px;
 }
 
+.correct {
+  color: green;
+}
+
+.incorrect {
+  color: red;
+}
+
+.tabbed {
+  margin-left: 65px;
+  width: 50%;
+}
+
 table, td {
   border: 1px solid black;
 }

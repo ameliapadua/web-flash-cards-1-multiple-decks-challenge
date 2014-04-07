@@ -53,14 +53,16 @@ get '/round/:id/deck/:deck_name' do
 end
 
 post '/deck/result' do
+  content_type :json
   if logged_in?
     user_guess = params[:option]
-    @real_answer = params[:real_answer]
-    @result = Round.check_guess(user_guess, @real_answer)
-    deck_id = Round.last.deck_id
-    @deck_name = Deck.find(deck_id).name
-
-    erb :'deck/results'
+    real_answer = params[:real_answer]
+    puts "============================="
+    puts "The user_guess: #{user_guess}"
+    puts "The real_answer: #{real_answer}"
+    puts "============================="
+    result = Round.check_guess(user_guess, real_answer)
+    {result: result, user_guess: user_guess, real_answer: real_answer}.to_json
   else
     redirect '/'
   end
