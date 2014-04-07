@@ -42,4 +42,29 @@ helpers do
       }
     end
   end
+
+  def create_current_round_hash
+    last_round = current_user.rounds.last
+
+    correct = 0
+    incorrect = 0
+
+    last_round.guesses.each do |guess|
+      guess.correct ? correct += 1 : incorrect += 1
+    end
+    deck = Deck.find(last_round.deck_id)
+    puts "------------------------------------"
+    puts "Guesses: #{last_round.guesses.count}"
+    puts "Deck: #{deck.cards.count}"
+    puts "------------------------------------"
+    last_round.guesses.count < deck.cards.count ? completeness = "Incomplete" : completeness = "Complete"
+    {
+      deck: deck.name,
+      correct: correct,
+      incorrect: incorrect,
+      total: last_round.guesses.count,
+      completeness: completeness,
+      percentage: (correct * 100)/(correct + incorrect)
+    }
+  end
 end
