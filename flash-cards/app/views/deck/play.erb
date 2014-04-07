@@ -5,8 +5,7 @@
   <table class="formtable">
     <form id="target" action="/deck/result" method="post">
       <%= Round.card_in_play.definition %><br>
-      <p>This is the answer <%= Round.card_in_play.term %></p><br>
-      <input id='real-answer'type="hidden" name="real_answer" value="<%= Round.card_in_play.term %>" />
+      <input id='real-answer'type="hidden" name="real_answer" value="<%= Round.card_in_play.term %>" /><br>
       <% @possible_answers.shuffle.each do |possible_answer| %>
       <input type="radio" name="option" value="<%= possible_answer %>" > <%= possible_answer %>
       <br/><br/>
@@ -23,6 +22,9 @@
     </form>
 
     <div id='result-table'>
+      <form id= "guess-result" action="/deck/<%= @deck_name %>" method="post">
+        <input class='large-button'type='submit' value='Next'/>
+      </form>
       <div>
         <p id='result'></p>
         <p>You Guessed:</p>
@@ -31,9 +33,6 @@
         <p class='tabbed'><span id='real_answer'></span></p>
       </div>
 
-      <form id= "guess-result" action="/deck/<%= @deck_name %>" method="post">
-        <input class='large-button'type='submit' value='Next'/>
-      </form>
     </div>
 
   </table>
