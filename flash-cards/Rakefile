@@ -110,11 +110,11 @@ namespace :db do
   desc "Populate the database with dummy data by running db/seeds.rb"
   task :seed do
     require APP_ROOT.join('db', 'seeds.rb')
-    # DeckImporter.import('Les Animales', 'db/animale.csv')
-    # DeckImporter.import('Greek Gods', 'db/greek_gods.csv')
-    # DeckImporter.import('Mythical Creatures', 'db/creatures.csv')
-    # DeckImporter.import('Video Games', 'db/video_games.csv')
-    # DeckImporter.import('Game of Thrones', 'db/game_of_thrones.csv')
+    DeckImporter.import('Les Animales', 'db/animale.csv')
+    DeckImporter.import('Greek Gods', 'db/greek_gods.csv')
+    DeckImporter.import('Mythical Creatures', 'db/creatures.csv')
+    DeckImporter.import('Video Games', 'db/video_games.csv')
+    DeckImporter.import('Game of Thrones', 'db/game_of_thrones.csv')
   end
 
   desc "Returns the current schema version number"

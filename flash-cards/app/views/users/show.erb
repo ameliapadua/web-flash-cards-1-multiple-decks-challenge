@@ -24,7 +24,8 @@
           <th>Incorrect</th>
           <th>Total</th>
           <th>Percentage</th>
-          <th>Completion</th>
+          <th>Round Status</th>
+
         </tr>
       <% @round_stats.each do |round, value| %>
         <tr>
@@ -38,7 +39,6 @@
         </tr>
       <% end %>
     </table>
-
   <% else %>
     <p>You haven't played any rounds yet!</p>
   <% end %>

@@ -4,4 +4,27 @@
 <div class="container">
   <p>Game stats</p>
   <p><a href="/deck">Deck List</a></p>
+  <span>
+      <table>
+        <tr>
+          <th>Deck</th>
+          <th>Round</th>
+          <th>Correct</th>
+          <th>Incorrect</th>
+          <th>Total</th>
+          <th>Percentage</th>
+          <th>Round Status</th>
+        </tr>
+        <tr>
+          <td><%= @round_stats[:deck] %></td>
+          <td>Last Round</td>
+          <td><%= @round_stats[:correct] %></td>
+          <td><%= @round_stats[:incorrect] %></td>
+          <td><%= @round_stats[:total] %></td>
+          <td><%= "#{@round_stats[:percentage]}%" %></td>
+          <td><%= @round_stats[:completeness] %></td>
+        </tr>
+    </table>
+</span>
+  <p><a class="large-button" href="/deck">Deck List</a></p>
 </div>
